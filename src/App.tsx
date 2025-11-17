@@ -75,9 +75,9 @@ export default function App() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1.2, delay: 0.2 }}
                   >
-                    <span className="block text-white">let's roar into</span>
+                    <span className="block text-white">Discover</span>
                     <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                      the wild together.
+                      Astana
                     </span>
                   </motion.h1>
                 </motion.div>
@@ -90,7 +90,7 @@ export default function App() {
                   transition={{ duration: 1, delay: 0.4 }}
                 >
                   <p className="text-lg md:text-xl lg:text-2xl text-slate-300 leading-relaxed mb-4">
-                    <span className="font-bold text-white">IN THE WILDERNESS OF CHANGE,</span> OUR WORLD'S VIEW WILL ROAR INTO A NEW TOMORROW AND BEYOND.
+                    Explore the vibrant city of Astana, where modernity meets tradition.
                   </p>
                   <p className="text-2xl md:text-3xl text-white font-black">
                     ASTANA
@@ -104,10 +104,9 @@ export default function App() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.6 }}
                 >
-                  {/* Left Column - Contact Info */}
                   <div>
                     <h3 className="text-sm uppercase tracking-widest text-slate-400 mb-8 font-bold">
-                      our hideaway
+                      Our Landmarks
                     </h3>
                     <div className="space-y-6">
                       <motion.a
@@ -123,51 +122,9 @@ export default function App() {
                           </p>
                         </div>
                       </motion.a>
-
-                      <motion.a
-                        href="tel:+77172275555"
-                        className="flex items-start gap-4 group"
-                        whileHover={{ x: 10 }}
-                      >
-                        <Phone className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1" />
-                        <div>
-                          <p className="text-slate-400 text-sm mb-1">Phone</p>
-                          <p className="text-white text-lg hover:text-cyan-400 transition-colors">
-                            +7 (717) 227-5555
-                          </p>
-                        </div>
-                      </motion.a>
-
-                      <div className="flex items-start gap-4">
-                        <MapPin className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1" />
-                        <div>
-                          <p className="text-slate-400 text-sm mb-1">Location</p>
-                          <p className="text-white text-lg">Astana, Kazakhstan</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="mt-12">
-                      <p className="text-sm uppercase tracking-widest text-slate-400 mb-6 font-bold">
-                        Follow Us
-                      </p>
-                      <div className="flex gap-6">
-                        {['LinkedIn', 'Instagram', 'Twitter', 'Facebook'].map((social) => (
-                          <motion.a
-                            key={social}
-                            href="#"
-                            className="text-slate-400 hover:text-cyan-400 transition-colors text-sm font-medium"
-                            whileHover={{ scale: 1.1, y: -2 }}
-                          >
-                            {social}
-                          </motion.a>
-                        ))}
-                      </div>
                     </div>
                   </div>
 
-                  {/* Right Column - Contact Form */}
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl blur-2xl" />
                     <form onSubmit={handleSubmit} className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 space-y-6">
@@ -389,12 +346,12 @@ export default function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    { title: 'Baiterek Tower', subtitle: 'Iconic Symbol', img: 'https://images.unsplash.com/photo-1500462918059-b1a0cb175dd1?ixlib=rb-4.0.3', link: 'https://en.wikipedia.org/wiki/Baiterek' },
-                    { title: 'Khan Shatyr', subtitle: 'Modern Marvel', img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3', link: 'https://en.wikipedia.org/wiki/Khan_Shatyr' },
-                    { title: 'Astana Arena', subtitle: 'Sports Hub', img: 'https://images.unsplash.com/photo-1479158902221-a8beddc51b59?ixlib=rb-4.0.3', link: 'https://en.wikipedia.org/wiki/Astana_Arena' },
-                    { title: 'Presidential Palace', subtitle: 'Akorda', img: 'https://images.unsplash.com/photo-1518005020951-7348c3926f65?ixlib=rb-4.0.3', link: 'https://en.wikipedia.org/wiki/Presidential_Palace_(Kazakhstan)' },
-                    { title: 'Nur Alem', subtitle: 'Energy Sphere', img: 'https://images.unsplash.com/photo-1495472033497-ce84e9c78af0?ixlib=rb-4.0.3', link: 'https://en.wikipedia.org/wiki/Nur_Alem' },
-                    { title: 'Parks & Gardens', subtitle: 'Green Spaces', img: 'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?ixlib=rb-4.0.3', link: 'https://en.wikipedia.org/wiki/Culture_of_Astana' }
+                    { title: 'Baiterek Tower', subtitle: 'Iconic Symbol', img: 'https://images.unsplash.com/photo-1500462918059-b1a0cb175dd1?ixlib=rb-4.0.3' },
+                    { title: 'Khan Shatyr', subtitle: 'Modern Marvel', img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3' },
+                    { title: 'Astana Arena', subtitle: 'Sports Hub', img: 'https://images.unsplash.com/photo-1479158902221-a8beddc51b59?ixlib=rb-4.0.3' },
+                    { title: 'Presidential Palace', subtitle: 'Akorda', img: 'https://images.unsplash.com/photo-1518005020951-7348c3926f65?ixlib=rb-4.0.3' },
+                    { title: 'Nur Alem', subtitle: 'Energy Sphere', img: 'https://images.unsplash.com/photo-1495472033497-ce84e9c78af0?ixlib=rb-4.0.3' },
+                    { title: 'Parks & Gardens', subtitle: 'Green Spaces', img: 'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?ixlib=rb-4.0.3' }
                   ].map((item, idx) => (
                     <motion.div
                       key={idx}
@@ -405,20 +362,18 @@ export default function App() {
                       transition={{ duration: 0.6, delay: idx * 0.1 }}
                       whileHover={{ scale: 1.05 }}
                     >
-                      <a href={item.link} target="_blank" rel="noopener noreferrer">
-                        <img
-                          src={item.img}
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                          <p className="text-sm text-cyan-400 font-bold uppercase tracking-wider mb-2">
-                            {item.subtitle}
-                          </p>
-                          <h3 className="text-2xl font-bold">{item.title}</h3>
-                        </div>
-                      </a>
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <p className="text-sm text-cyan-400 font-bold uppercase tracking-wider mb-2">
+                          {item.subtitle}
+                        </p>
+                        <h3 className="text-2xl font-bold">{item.title}</h3>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
