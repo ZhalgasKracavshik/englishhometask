@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { LoadingScreen } from './components/LoadingScreen';
 import { AnimatedBackground } from './components/AnimatedBackground';
@@ -26,11 +26,25 @@ import {
   Heart,
   Camera,
   Coffee,
-  ChevronDown
+  ChevronDown,
+  Globe
 } from 'lucide-react';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+      setScrollProgress(scrollPercent);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const touristPlaces = [
     {
@@ -102,86 +116,162 @@ export default function App() {
       </AnimatePresence>
 
       {!isLoading && (
-        <div className="min-h-screen text-white overflow-x-hidden">
+        <div className="min-h-screen text-white overflow-x-hidden bg-slate-950">
           <MouseFollower />
-          {/* Новый интерактивный hero-блок с вау-эффектами */}
-          <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-            <div className="absolute inset-0 z-0 pointer-events-none">
-              {/* 3D-параллакс и световые эффекты */}
+          
+          {/* Progress Bar */}
+          <motion.div
+            className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 z-50"
+            style={{ scaleX: scrollProgress }}
+            transition={{ duration: 0.1 }}
+          />
+
+          {/* ===== HERO SECTION ===== */}
+          <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-20">
+            <AnimatedBackground />
+            
+            {/* Animated Gradient Orbs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <motion.div
-                className="absolute top-0 left-0 w-full h-full"
+                className="absolute w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
                 animate={{
-                  opacity: [0.7, 1, 0.7],
-                  filter: ['blur(0px)', 'blur(20px)', 'blur(0px)'],
+                  x: [0, 100, -100, 0],
+                  y: [0, -100, 100, 0],
                 }}
-                transition={{ duration: 8, repeat: Infinity }}
-                style={{ background: 'radial-gradient(circle at 60% 40%, #7f5af0 0%, #2cb67d 60%, #16161a 100%)' }}
-              />
-              {/* Частицы */}
-              {[...Array(40)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute rounded-full bg-blue-400/30"
-                  style={{
-                    width: `${6 + Math.random() * 12}px`,
-                    height: `${6 + Math.random() * 12}px`,
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [0, -30, 0],
-                    opacity: [0.3, 0.8, 0.3],
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 2,
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                  }}
-                />
-              ))}
-              <motion.div
-                className="absolute bottom-20 right-10 w-16 h-16 border-2 border-purple-400/30 rounded-full"
-                animate={{
-                  y: [0, 20, 0],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                style={{ top: '10%', left: '10%' }}
               />
               <motion.div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <ChevronDown className="w-8 h-8 text-blue-400" />
-              </motion.div>
+                className="absolute w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+                animate={{
+                  x: [0, -100, 100, 0],
+                  y: [0, 100, -100, 0],
+                }}
+                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+                style={{ bottom: '10%', right: '10%' }}
+              />
             </div>
-            <div className="relative z-10 text-center max-w-6xl">
-              <motion.h1
-                className="mb-8 text-6xl md:text-8xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg"
-                initial={{ scale: 0.8, opacity: 0 }}
+
+            <div className="relative z-10 text-center max-w-5xl mx-auto">
+              {/* Badge */}
+              <motion.div
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 backdrop-blur-md mb-8"
+                initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.2 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <Zap className="w-4 h-4 text-cyan-400" />
+                <span className="text-cyan-300 font-medium">Experience the Future</span>
+              </motion.div>
+
+              {/* Main Title */}
+              <motion.h1
+                className="text-7xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
               >
                 ASTANA
               </motion.h1>
+
+              {/* Subtitle */}
               <motion.p
-                className="text-2xl md:text-3xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed drop-shadow"
+                className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1.2, delay: 0.3 }}
+                transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
               >
-                The city of the future, built on the traditions of the past. Modern architecture, vibrant infrastructure, and endless opportunities for life and tourism.
+                Where tradition meets innovation. Discover the beating heart of modern Kazakhstan.
               </motion.p>
-              {/* Morph transition hint */}
+
+              {/* CTA with animated background */}
               <motion.div
-                className="mx-auto mt-8 w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 blur-2xl shadow-2xl"
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 360, 0] }}
-                transition={{ duration: 6, repeat: Infinity }}
-              />
+                className="relative inline-block"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, delay: 0.4 }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg blur"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <motion.button
+                  className="relative px-8 py-4 bg-slate-950 rounded-lg font-semibold overflow-hidden group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="relative z-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                    Explore Now
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg"
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                </motion.button>
+              </motion.div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 -translate-x-1/2"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <ChevronDown className="w-8 h-8 text-cyan-400" />
+            </motion.div>
+          </section>
+
+          {/* ===== ABOUT SECTION ===== */}
+          <section className="relative py-32 px-4 overflow-hidden">
+            <div className="max-w-6xl mx-auto">
+              <motion.div
+                className="text-center mb-20"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-5xl md:text-6xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-500">
+                  The Capital Reimagined
+                </h2>
+                <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+                  Astana represents a bold vision: a modern metropolis that honors Kazakhstan's rich heritage while embracing cutting-edge innovation and technology.
+                </p>
+              </motion.div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[
+                  { icon: Globe, value: '1.4M+', label: 'Population' },
+                  { icon: Building2, value: '2,000+', label: 'Modern Buildings' },
+                  { icon: Users, value: '150+', label: 'Nationalities' },
+                ].map((stat, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="relative p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/20 backdrop-blur-md overflow-hidden group"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    whileHover={{ y: -10, borderColor: 'rgba(34, 211, 238, 0.5)' }}
+                  >
+                    {/* Animated background gradient */}
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 transition-opacity duration-500"
+                    />
+                    <div className="relative z-10">
+                      <stat.icon className="w-12 h-12 text-cyan-400 mb-4" />
+                      <div className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-400 mb-2">
+                        {stat.value}
+                      </div>
+                      <div className="text-slate-400">{stat.label}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
 
