@@ -309,6 +309,63 @@ export default function App() {
               </div>
             </section>
 
+            {/* Stats Section */}
+            <section className="py-20 px-4 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 border-y border-white/10">
+              <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                  {[
+                    { number: '1.4M+', label: 'Population' },
+                    { number: '2,000+', label: 'Buildings' },
+                    { number: '150+', label: 'Nationalities' },
+                    { number: '99%', label: 'Satisfaction' }
+                  ].map((stat, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    >
+                      <h3 className="text-3xl md:text-5xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2">
+                        {stat.number}
+                      </h3>
+                      <p className="text-slate-400 text-sm md:text-base">{stat.label}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Contact CTA Section */}
+            <section className="py-20 px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <h2 className="text-5xl md:text-6xl font-black mb-6">
+                    <span className="block text-white">Ready to explore</span>
+                    <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                      the future?
+                    </span>
+                  </h2>
+                  <p className="text-slate-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                    Connect with us today and discover how Astana can be your next destination for business, living, or investment.
+                  </p>
+                  <motion.a
+                    href="#contact"
+                    className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 px-10 rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all text-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Get In Touch →
+                  </motion.a>
+                </motion.div>
+              </div>
+            </section>
+
             {/* Gallery Section */}
             <section className="py-20 px-4 bg-slate-900/30">
               <div className="max-w-7xl mx-auto">
