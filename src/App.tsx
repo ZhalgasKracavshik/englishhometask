@@ -266,6 +266,106 @@ export default function App() {
               </div>
             </section>
 
+            {/* Features Section */}
+            <section className="py-20 px-4">
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  className="text-center mb-16"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <h2 className="text-5xl md:text-6xl font-black mb-6">
+                    <span className="block text-white">Why</span>
+                    <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                      Astana?
+                    </span>
+                  </h2>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {[
+                    { icon: '🚀', title: 'Rapid Growth', desc: 'One of world\'s fastest-growing cities' },
+                    { icon: '🌍', title: 'Strategic Location', desc: 'Bridge between Europe and Asia' },
+                    { icon: '🏛️', title: 'Modern Infrastructure', desc: 'World-class facilities and services' },
+                    { icon: '🤝', title: 'Multicultural', desc: '150+ nationalities coexist peacefully' }
+                  ].map((feature, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-8 hover:border-cyan-400/50 transition-colors"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      whileHover={{ y: -10 }}
+                    >
+                      <div className="text-5xl mb-4">{feature.icon}</div>
+                      <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                      <p className="text-slate-400">{feature.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Gallery Section */}
+            <section className="py-20 px-4 bg-slate-900/30">
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  className="text-center mb-16"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <h2 className="text-5xl md:text-6xl font-black mb-6">
+                    <span className="block text-white">Discover</span>
+                    <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                      The City
+                    </span>
+                  </h2>
+                  <p className="text-slate-300 max-w-2xl mx-auto text-lg">
+                    Explore iconic landmarks and modern attractions that define Astana's unique character
+                  </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    { title: 'Baiterek Tower', subtitle: 'Iconic Symbol', img: 'https://images.unsplash.com/photo-1500462918059-b1a0cb175dd1?ixlib=rb-4.0.3' },
+                    { title: 'Khan Shatyr', subtitle: 'Modern Marvel', img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3' },
+                    { title: 'Astana Arena', subtitle: 'Sports Hub', img: 'https://images.unsplash.com/photo-1479158902221-a8beddc51b59?ixlib=rb-4.0.3' },
+                    { title: 'Presidential Palace', subtitle: 'Akorda', img: 'https://images.unsplash.com/photo-1518005020951-7348c3926f65?ixlib=rb-4.0.3' },
+                    { title: 'Nur Alem', subtitle: 'Energy Sphere', img: 'https://images.unsplash.com/photo-1495472033497-ce84e9c78af0?ixlib=rb-4.0.3' },
+                    { title: 'Parks & Gardens', subtitle: 'Green Spaces', img: 'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?ixlib=rb-4.0.3' }
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="group relative overflow-hidden rounded-xl h-64 cursor-pointer"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <p className="text-sm text-cyan-400 font-bold uppercase tracking-wider mb-2">
+                          {item.subtitle}
+                        </p>
+                        <h3 className="text-2xl font-bold">{item.title}</h3>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
             {/* Footer Section */}
             <section className="py-20 px-4 border-t border-white/10">
               <div className="max-w-7xl mx-auto">
